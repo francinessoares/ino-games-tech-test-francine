@@ -80,9 +80,31 @@ const slotMachineCadences: RoundsCadences = { roundOne: [], roundTwo: [], roundT
  * @param symbols Array<SlotCoordinate> positions of the special symbols. Example: [{ column: 0, row: 2 }, { column: 2, row: 3 }]
  * @returns SlotCadence Array of numbers representing the slot machine stop cadence.
  */
+function countSpecialSymbolsBeforeColumn(
+  symbols: Array<SlotCoordinate>,
+  column: number,
+): number {
+  return symbols.filter((symbol) => symbol.column < column).length;
+}
+
 function slotCadence(symbols: Array<SlotCoordinate>): SlotCadence {
-  // Magic
-  return [];
+  const { columnSize, minToAnticipate, maxToAnticipate, anticipateCadence, defaultCadence } =
+    anticipatorConfig;
+
+  const cadences: SlotCadence = [0];
+
+  for (let column = 1; column < columnSize; column += 1) {
+    const specialSymbolsBeforeColumn = countSpecialSymbolsBeforeColumn(symbols, column);
+    const isAnticipating =
+      specialSymbolsBeforeColumn >= minToAnticipate &&
+      specialSymbolsBeforeColumn < maxToAnticipate;
+    const cadence = isAnticipating ? anticipateCadence : defaultCadence;
+    const previousCadence = cadences[column - 1];
+
+    cadences.push(previousCadence + cadence);
+  }
+
+  return cadences;
 }
 
 /**
