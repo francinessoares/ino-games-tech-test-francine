@@ -1,60 +1,60 @@
 # Ino Games - Technical Assessment
 
-## Resumo da solução
+## Solution overview
 
-Este repositório contém dois desafios relacionados à lógica de uma slot machine:
+This repository contains two challenges related to slot machine logic:
 
-- **Winning Combinations:** identifica combinações vencedoras em uma linha, considerando 3 ou mais símbolos consecutivos e o símbolo `0` como wild.
-- **Cadence:** calcula o tempo de parada de cada coluna, alternando entre cadência normal e cadência de antecipação conforme a quantidade de símbolos especiais.
+- **Winning Combinations:** identifies winning combinations on a payline, considering 3 or more consecutive symbols and symbol `0` as wild.
+- **Cadence:** calculates the stop time for each column, switching between normal cadence and anticipation cadence based on the number of special symbols.
 
-## Implementações realizadas
+## Implementations
 
 ### Winning Combinations
 
-A função `call(lines)` foi implementada para:
+The `call(lines)` function was implemented to:
 
-- identificar intervalos com 3 ou mais símbolos consecutivos;
-- considerar símbolos pagantes de `1` a `9`;
-- tratar `0` como wild;
-- invalidar símbolos não pagantes entre `10` e `15`;
-- manter apenas combinações maximais;
-- remover combinações compostas apenas por wild quando já existir uma combinação pagante equivalente.
+- identify intervals with 3 or more consecutive symbols;
+- consider paying symbols from `1` to `9`;
+- treat `0` as wild;
+- invalidate non-paying symbols between `10` and `15`;
+- keep only maximal combinations;
+- remove wild-only combinations when an equivalent paying combination already exists.
 
 ### Cadence
 
-A função `slotCadence(symbols)` foi implementada para:
+The `slotCadence(symbols)` function was implemented to:
 
-- iniciar a primeira coluna com tempo `0`;
-- contar símbolos especiais presentes nas colunas anteriores;
-- aplicar cadência de antecipação quando a quantidade estiver entre `minToAnticipate` e `maxToAnticipate`;
-- retornar a cadência acumulada de parada para cada coluna.
+- start the first column at time `0`;
+- count special symbols present in previous columns;
+- apply anticipation cadence when the count is between `minToAnticipate` and `maxToAnticipate`;
+- return the cumulative stop cadence for each column.
 
-## Resultado
+## Results
 
-- 27/27 testes passando em **Winning Combinations**
-- Nenhum teste, arquivo de configuração ou estrutura do projeto foi alterado
-- Apenas as funções pendentes foram implementadas
+- 27/27 tests passing in **Winning Combinations**
+- No tests, configuration files, or project structure were changed
+- Only the pending functions were implemented
 
 ---
 
-## Como executar
+## How to run
 
-### Instalação
+### Installation
 
 ```bash
 npm install
 ```
 
-### Testes
+### Tests
 
 ```bash
-# Todos os testes
+# All tests
 npm test
 
-# Modo watch
+# Watch mode
 npm run test:watch
 
-# Apenas Winning Combinations (Windows)
+# Winning Combinations only (Windows)
 npx vitest run "Winning Combinations/tests/winning-combinations.test.ts"
 ```
 
@@ -67,7 +67,7 @@ npx tsx SlotMachineCadence.ts
 
 ---
 
-## Estrutura do projeto
+## Project structure
 
 ```text
 ├── Cadence/
@@ -80,6 +80,6 @@ npx tsx SlotMachineCadence.ts
 
 ---
 
-## Licença
+## License
 
-Este projeto é de uso restrito para avaliação técnica da **Ino Games**. Consulte o arquivo [LICENSE](LICENSE) para os termos completos.
+This project is restricted to technical assessment use by **Ino Games**. See the [LICENSE](LICENSE) file for full terms.
